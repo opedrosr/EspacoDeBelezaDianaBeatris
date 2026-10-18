@@ -514,3 +514,11 @@ main:focus { outline: none; }
   html, .hair-results-track, .ritual-grid, .about-photo-track { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* ---------- Modelo demonstrativo e identidade provisória ---------- */
+.brand-template-name { display: inline-block; color: #fffaf2; font-size: clamp(17px, 2vw, 23px); font-weight: 600; letter-spacing: .04em; white-space: nowrap; }
+.intro-logo-text { display: block; margin: 0 auto 18px; font-size: clamp(36px, 7vw, 64px); font-weight: 500; letter-spacing: -.04em; color: #33291f; }
+.personalization-note { margin: 0 0 24px; padding: 18px 20px; border-left: 3px solid #d4ac6b; background: rgba(212,172,107,.13); }
+.personalization-note strong { display: block; margin-bottom: 6px; color: #8f6d3f; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+.personalization-note p { margin: 0; color: #625347; font-size: 12px; line-height: 1.75; }
+.footer-disclaimer { max-width: 850px; margin: 18px auto 0; padding: 0 24px 24px; color: rgba(255,250,242,.65); font-size: 12px; line-height: 1.7; text-align: center; }
