@@ -41,12 +41,10 @@ const professionalPhotos = [
   { src: '/profissional3.jpeg', alt: 'Retrato profissional do Espaço de Beleza Diana Beatris' },
 ];
 
-type GalleryCategory = 'Mega Hair' | 'Alisamento' | 'Escova' | 'Transformações' | 'Unhas';
+type GalleryCategory = 'Alisamento' | 'Escova' | 'Transformações' | 'Unhas';
 type GalleryFilter = 'Todos' | GalleryCategory;
 
 const galleryPhotos: { src: string; alt: string; category: GalleryCategory }[] = [
-  { src: '/antesDepoisMegaHair.jpeg', alt: 'Antes e depois de Mega Hair', category: 'Mega Hair' },
-  { src: '/antesDepoisMegaHair1.jpeg', alt: 'Resultado de alongamento capilar', category: 'Mega Hair' },
   { src: '/resultado1.jpeg', alt: 'Resultado de transformação capilar', category: 'Transformações' },
   { src: '/resultado2.jpeg', alt: 'Resultado de cabelo realizado no salão', category: 'Transformações' },
   { src: '/resultado3.jpeg', alt: 'Finalização capilar', category: 'Transformações' },
@@ -59,10 +57,9 @@ const galleryPhotos: { src: string; alt: string; category: GalleryCategory }[] =
   { src: '/unhas3.jpeg', alt: 'Resultado de manicure e unhas', category: 'Unhas' },
 ];
 
-const galleryFilters: GalleryFilter[] = ['Todos', 'Mega Hair', 'Alisamento', 'Escova', 'Transformações', 'Unhas'];
+const galleryFilters: GalleryFilter[] = ['Todos', 'Alisamento', 'Escova', 'Transformações', 'Unhas'];
 
 const categoryPhrase: Record<GalleryCategory, string> = {
-  'Mega Hair': 'Mega Hair',
   Alisamento: 'alisamento',
   Escova: 'escova',
   Transformações: 'transformação capilar',
@@ -120,6 +117,7 @@ const sections = [
   { id: 'inicio', label: 'Início' },
   { id: 'servicos', label: 'Serviços' },
   { id: 'rapunzel', label: 'Rapunzel' },
+  { id: 'antes-depois', label: 'Antes e depois' },
   { id: 'galeria', label: 'Galeria' },
   { id: 'sobre', label: 'Sobre' },
   { id: 'agendar', label: 'Agendar' },
@@ -491,6 +489,74 @@ function HairSimulator({
         </div>
       </div>
     </div>
+  );
+}
+
+
+
+/* ---------- Antes e depois interativo ---------- */
+
+const beforeAfterPhotos = [
+  { src: '/antesDepoisMegaHair.jpeg', title: 'Transformação Mega Hair 01', alt: 'Colagem de antes e depois de Mega Hair' },
+  { src: '/antesDepoisMegaHair1.jpeg', title: 'Transformação Mega Hair 02', alt: 'Colagem de antes e depois de Mega Hair' },
+];
+
+function BeforeAfter() {
+  const [selected, setSelected] = useState(0);
+  const [position, setPosition] = useState(50);
+  const active = beforeAfterPhotos[selected];
+
+  return (
+    <section id="antes-depois" className="before-after sec">
+      <div className="page-width">
+        <header className="sec-head">
+          <span className="eyebrow">Resultados reais</span>
+          <h2>Antes & depois</h2>
+          <p>Escolha uma transformação e revele a foto aos poucos para ver o resultado completo.</p>
+        </header>
+
+        <div className="before-after-choices" role="group" aria-label="Escolha uma transformação">
+          {beforeAfterPhotos.map((photo, index) => (
+            <button
+              key={photo.src}
+              type="button"
+              className={`before-after-choice ${selected === index ? 'is-active' : ''}`}
+              aria-pressed={selected === index}
+              onClick={() => { setSelected(index); setPosition(50); }}
+            >
+              <span>Transformação {String(index + 1).padStart(2, '0')}</span>
+              <strong>{photo.title}</strong>
+            </button>
+          ))}
+        </div>
+
+        <div className="before-after-card">
+          <div
+            className="before-after-compare"
+            style={{ '--compare-position': `${position}%` } as CSSProperties}
+          >
+            <div className="before-after-photo-frame">
+              <img className="before-after-photo" src={active.src} alt={active.alt} draggable={false} />
+            </div>
+            <span className="before-after-label before">ANTES</span>
+            <span className="before-after-label after">DEPOIS</span>
+            <div className="before-after-divider" aria-hidden="true">
+              <span>↔</span>
+            </div>
+            <input
+              className="before-after-range"
+              type="range"
+              min="0"
+              max="100"
+              value={position}
+              onChange={(event) => setPosition(Number(event.target.value))}
+              aria-label="Arraste para revelar a foto do antes ao depois"
+            />
+          </div>
+          <p className="before-after-hint">Arraste a linha para revelar a foto do antes ao depois.</p>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -1172,6 +1238,9 @@ export default function App() {
                 />
               </div>
             </section>
+
+            {/* ---------- Antes e depois ---------- */}
+            <BeforeAfter />
 
             {/* ---------- Galeria ---------- */}
             <section id="galeria" className="gallery sec">
