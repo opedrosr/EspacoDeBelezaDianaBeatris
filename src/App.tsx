@@ -1115,6 +1115,7 @@ export default function App() {
               <div className="page-width hero-layout">
                 <div className="hero-photo hero-rise" style={{ '--d': '0.4s' } as CSSProperties}>
                   <img src={images.hero} alt="Imagem de abertura do Espaço de Beleza Diana Beatris" fetchPriority="high" decoding="async" />
+                  <div className="hero-photo-blur" aria-hidden="true" />
                 </div>
 
                 <div className="hero-inner">
