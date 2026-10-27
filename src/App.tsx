@@ -1260,7 +1260,7 @@ export default function App() {
 
                 <div className="about-copy">
                   <h2>Diana Beatris</h2>
-                  <p className="about-role">Profissional da beleza e especialista em Mega Hair</p>
+                  <p className="about-role">CEO do Espaço de Beleza Diana Beatris e profissional da beleza, especialista em Mega Hair</p>
 
                   <p>
                     Sou apaixonada por transformar cabelos, realçar a beleza feminina e elevar a autoestima de cada cliente.
